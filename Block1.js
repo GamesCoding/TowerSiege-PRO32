@@ -6,6 +6,13 @@ class Block1 extends BaseClass {
     this.visibility = 255
   }
 
+  score(){
+    if(this.visibility < 0 && this.visibility > -1005){
+
+      score++
+    }
+  }
+
   display(){
 
     if(this.body.speed<3){

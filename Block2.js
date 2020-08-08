@@ -4,6 +4,13 @@ class Block2 extends BaseClass {
     //this.image = loadImage("wood1.png");
   }
 
+  score(){
+    if(this.visibility < 0 && this.visibility > -1005){
+
+      score++
+    }
+  }
+
   display(){
 
     if(this.body.speed<3){

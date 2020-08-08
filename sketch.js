@@ -6,6 +6,14 @@ const Constraint = Matter.Constraint;
 var engine, world;
 
 var stone;
+var backgroundColor;
+
+var score = 0;
+
+function preload() {
+
+  getBackgroundColor();
+}
 
 function setup() {
   createCanvas(1200,500);
@@ -49,9 +57,19 @@ function setup() {
 }
 
 function draw() {
-  background("blue");
+  
+  if(backgroundColor){
+  
+  background(backgroundColor);
+  }
   
   //Engine.update(engine);
+
+  //noStroke();
+  textSize(35);
+  fill("white")
+  text("Score: "+score,750,40);
+  
 
   platform.display();
 
@@ -80,6 +98,28 @@ function draw() {
 
   launcher.display();
 
+  //separation
+
+  layer1Box1.score();
+  layer1Box2.score();
+  layer1Box3.score();
+  layer1Box4.score();
+  layer1Box5.score();
+  layer1Box6.score();
+  layer1Box7.score();
+
+  layer2Box1.score();
+  layer2Box2.score();
+  layer2Box3.score();
+  layer2Box4.score();
+  layer2Box5.score();
+
+  layer3Box1.score();
+  layer3Box2.score();
+  layer3Box3.score();
+
+  layer4Box1.score();
+
   //drawSprites();
 }
 
@@ -89,4 +129,24 @@ function mouseDragged () {
 
 function mouseReleased () {
   launcher.fly();
+}
+
+async function getBackgroundColor(){
+  var response= await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+  var responseJSON= await response.json();
+
+  var datetime= responseJSON.datetime;
+  var hour= datetime.slice(11,13);
+
+  //console.log(hour);
+
+  if(hour>=06 && hour<=18){
+    bg = "orange";
+}
+else{
+    bg = "blue";
+}
+
+//backgroundImg = loadImage(bg);
+  backgroundColor=bg;
 }
