@@ -12,7 +12,7 @@ var score = 0;
 
 function preload() {
 
-  getBackgroundColor();
+  //getBackgroundColor();
 }
 
 function setup() {
@@ -58,10 +58,7 @@ function setup() {
 
 function draw() {
   
-  if(backgroundColor){
-  
-  background(backgroundColor);
-  }
+  background("blue")
   
   //Engine.update(engine);
 
@@ -129,24 +126,4 @@ function mouseDragged () {
 
 function mouseReleased () {
   launcher.fly();
-}
-
-async function getBackgroundColor(){
-  var response= await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
-  var responseJSON= await response.json();
-
-  var datetime= responseJSON.datetime;
-  var hour= datetime.slice(11,13);
-
-  //console.log(hour);
-
-  if(hour>=06 && hour<=18){
-    bg = "orange";
-}
-else{
-    bg = "blue";
-}
-
-//backgroundImg = loadImage(bg);
-  backgroundColor=bg;
 }
